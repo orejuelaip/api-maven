@@ -1,0 +1,35 @@
+---  recorra cada uno de los pedidos y muestre el detalle de ellos 
+--    para el cliente ALFKI
+
+Declare Cursor5 Cursor For Select pc.IdPedido, FechaPedido, SUM(PrecioUnidad*Cantidad) Total 
+from Ventas.pedidoscabe pc join ventas.pedidosdeta pd on pc.IdPedido=pd.IdPedido
+group by pc.IdPedido, FechaPedido
+Declare @vc_Idped varchar(20), @vc_FechaPed date, @vc_TotalPed decimal
+Open Cursor5
+Fetch Cursor5 Into @vc_Idped, @vc_FechaPed, @vc_TotalPed
+Print Space(25)+'REPORTE DE PEDIDOS'
+Print Space(25)+Replicate('*',25)
+While @@FETCH_STATUS=0
+Begin
+Print 'Fecha Pedido: '+convert(varchar, @vc_FechaPed)
+Print 'Total Pedido   : '+convert(varchar,@vc_TotalPed)
+Print ''
+Declare CursorAni2 Cursor For Select p.IdProducto, NomProducto,pd.Cantidad*pd.PrecioUnidad  From compras.productos p
+join ventas.pedidosdeta pd on p.IdProducto=pd.IdProducto  Where pd.IdPedido=@vc_Idped
+Declare @vc_IdProd int, @vc_nomProd varchar(100), @vc_total decimal
+Open CursorAni2
+Fetch CursorAni2 Into @vc_IdProd, @vc_nomProd, @vc_total
+While @@FETCH_STATUS =0
+	Begin
+	Print str(@vc_IdProd) +	' '+ @vc_nomProd+' ' + str(@vc_total)
+	Print '-------------------------------------------------'
+	Fetch CursorAni2 Into @vc_IdProd, @vc_nomProd, @vc_total
+	End
+	Close CursorAni2
+	Deallocate CursorAni2
+	Fetch Cursor5 Into @vc_Idped, @vc_FechaPed, @vc_TotalPed
+	End
+Print Replicate ('*',50)
+Close Cursor5
+Deallocate Cursor5
+go

@@ -1,0 +1,15 @@
+edu\cibertec\soap\jaxws\ObtenerEntrenador.class
+edu\cibertec\soap\FifaImpl.class
+edu\cibertec\soap\jaxws\ObtenerCapitan.class
+edu\cibertec\bean\PaisDTO.class
+edu\cibertec\soap\UtilData.class
+edu\cibertec\soap\Fifa.class
+edu\cibertec\bean\JugadordDTO.class
+edu\cibertec\soap\jaxws\ObtenerGrupo.class
+edu\cibertec\soap\jaxws\ObtenerListaConvocados.class
+edu\cibertec\soap\jaxws\ObtenerGrupoResponse.class
+edu\cibertec\soap\jaxws\ObtenerCapitanResponse.class
+edu\cibertec\soap\jaxws\BienvenidaPaisResponse.class
+edu\cibertec\soap\jaxws\ObtenerListaConvocadosResponse.class
+edu\cibertec\soap\jaxws\BienvenidaPais.class
+edu\cibertec\soap\jaxws\ObtenerEntrenadorResponse.class
